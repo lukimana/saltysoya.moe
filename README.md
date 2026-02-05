@@ -63,5 +63,5 @@ Created with the help of Codex.
 
 # License
 
-This repository is licensed under the GNU General Public License v3.0.
+This repository is licensed under the MIT License.
 See `LICENSE` for the full text.
