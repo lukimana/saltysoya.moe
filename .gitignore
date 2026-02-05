@@ -8,6 +8,13 @@ music/
 vid/
 !music/.gitkeep
 !vid/.gitkeep
+img-webp-640/
+img-webp-1024/
+!img-webp-640/.gitkeep
+!img-webp-1024/.gitkeep
+
+
+
 
 # files
-gallery.saltysoya.moe.code-workspace
+# gallery.saltysoya.moe.code-workspace

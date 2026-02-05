@@ -749,6 +749,17 @@
         .then((response) => response.json())
         .then((images) => {
           const originalExtensions = ["png", "jpg", "jpeg"];
+          const items = images
+            .map((item) => {
+              if (typeof item === "string") {
+                return { src: item };
+              }
+              if (item && typeof item === "object" && item.src) {
+                return item;
+              }
+              return null;
+            })
+            .filter(Boolean);
 
           // Finds the matching original image in /img by probing common extensions.
           const resolveOriginal = async (webpPath) => {
@@ -768,32 +779,81 @@
             return `img/${baseName}.png`;
           };
 
-          images
+          const io = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                const img = entry.target;
+                const dataSrc = img.getAttribute("data-src");
+                if (dataSrc) {
+                  img.src = dataSrc;
+                  const dataSrcset = img.getAttribute("data-srcset");
+                  if (dataSrcset) {
+                    img.setAttribute("srcset", dataSrcset);
+                    img.removeAttribute("data-srcset");
+                  }
+                  const dataSizes = img.getAttribute("data-sizes");
+                  if (dataSizes) {
+                    img.setAttribute("sizes", dataSizes);
+                    img.removeAttribute("data-sizes");
+                  }
+                  img.removeAttribute("data-src");
+                }
+                io.unobserve(img);
+              });
+            },
+            { rootMargin: "200px 0px" }
+          );
+
+          const buildVariantPath = (srcPath, folder) =>
+            srcPath.replace(/^img-webp\//, `${folder}/`);
+
+          items
             .sort(() => Math.random() - 0.5)
-            .forEach((src) => {
-            const link = document.createElement("a");
-            link.className = "gallery-item";
-            link.target = "_blank";
-            link.rel = "noopener";
-            link.dataset.webp = src;
+            .forEach((item) => {
+              const src = item.src;
+              const link = document.createElement("a");
+              link.className = "gallery-item";
+              link.target = "_blank";
+              link.rel = "noopener";
+              link.dataset.webp = src;
 
-            const img = document.createElement("img");
-            img.loading = "lazy";
-            img.decoding = "async";
-            img.src = src;
-            img.alt = "";
+              const img = document.createElement("img");
+              img.decoding = "async";
+              img.loading = "lazy";
+              img.alt = "";
+              const smallSrc = buildVariantPath(src, "img-webp-640");
+              const mediumSrc = buildVariantPath(src, "img-webp-1024");
+              img.setAttribute("data-src", smallSrc);
+              const srcsetParts = [
+                `${smallSrc} 640w`,
+                `${mediumSrc} 1024w`,
+              ];
+              if (Number.isFinite(item.width)) {
+                srcsetParts.push(`${src} ${item.width}w`);
+              }
+              img.setAttribute("data-srcset", srcsetParts.join(", "));
+              img.setAttribute(
+                "data-sizes",
+                "(max-width: 520px) 100vw, (max-width: 820px) 50vw, (max-width: 1100px) 33vw, 25vw"
+              );
+              if (Number.isFinite(item.width) && Number.isFinite(item.height)) {
+                img.width = item.width;
+                img.height = item.height;
+              }
 
-            link.appendChild(img);
-            galleryGrid.appendChild(link);
+              link.appendChild(img);
+              galleryGrid.appendChild(link);
+              io.observe(img);
 
-            link.addEventListener("click", (event) => {
-              event.preventDefault();
-              const webpPath = link.dataset.webp || src;
-              resolveOriginal(webpPath).then((originalSrc) => {
-                window.open(originalSrc, "_blank", "noopener");
+              link.addEventListener("click", (event) => {
+                event.preventDefault();
+                const webpPath = link.dataset.webp || src;
+                resolveOriginal(webpPath).then((originalSrc) => {
+                  window.open(originalSrc, "_blank", "noopener");
+                });
               });
             });
-          });
         })
         .catch((error) => {
           console.error("Failed to load gallery images:", error);
