@@ -12,7 +12,27 @@
     <title>Salty Soya</title>
     <link rel="icon" type="image/png" href="favicon.png" />
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700&display=swap");
+      @font-face {
+        font-family: "Fraunces";
+        src: url("fonts/Fraunces-VariableFont_SOFT,WONK,opsz,wght.woff2")
+            format("woff2"),
+          url("fonts/Fraunces-VariableFont_SOFT,WONK,opsz,wght.woff")
+            format("woff");
+        font-weight: 100 900;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Fraunces";
+        src: url("fonts/Fraunces-Italic-VariableFont_SOFT,WONK,opsz,wght.woff2")
+            format("woff2"),
+          url("fonts/Fraunces-Italic-VariableFont_SOFT,WONK,opsz,wght.woff")
+            format("woff");
+        font-weight: 100 900;
+        font-style: italic;
+        font-display: swap;
+      }
 
       :root {
         color-scheme: light;
@@ -717,8 +737,8 @@
         </section>
       </main>
       <div class="sticker-row" aria-hidden="true">
-        <img class="sticker-left" src="suba_comm_stickers_zorua.png" alt="" />
-        <img class="sticker-right" src="suba_comm_stickers_soy.png" alt="" />
+        <img class="sticker-left" src="stickers/suba_comm_stickers_zorua.png" alt="" />
+        <img class="sticker-right" src="stickers/suba_comm_stickers_soy.png" alt="" />
       </div>
       <div class="footer">
         made by <a href="https://lukimana.moe" target="_blank" rel="noopener noreferrer"> lukimana</a><br />
