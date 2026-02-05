@@ -1,3 +1,4 @@
+// script.js: Animate hue blobs and unlock ambient audio playback.
 const frame = document.querySelector(".hue-field");
 const initialBlobs = Array.from(document.querySelectorAll(".hue-blob"));
 
@@ -16,6 +17,7 @@ const blobs = initialBlobs.map((el) => ({
   wanderTimer: 0,
 }));
 
+// Creates a single hue blob element and returns its animation state.
 const createHueBlob = (top) => {
   if (!frame) return null;
 
@@ -53,6 +55,7 @@ const createHueBlob = (top) => {
   };
 };
 
+// Fills the page with initial blobs based on scroll height.
 const fillInitialHueField = () => {
   if (!frame) return;
 
@@ -71,6 +74,7 @@ const fillInitialHueField = () => {
 
 fillInitialHueField();
 
+// Animates blob drift and wave motion each frame.
 const updateBlobs = (time) => {
   const boundsX = window.innerWidth * 0.45;
   const boundsY = window.innerHeight * 0.45;
@@ -116,11 +120,13 @@ requestAnimationFrame(updateBlobs);
 const ambientAudio = document.getElementById("ambient-audio");
 if (ambientAudio) {
   ambientAudio.volume = 0.2;
+  // Attempts to start ambient audio playback (may be blocked until user gesture).
   const tryPlay = () => {
     ambientAudio.play().catch(() => {});
   };
   tryPlay();
 
+  // Unlocks audio on first user interaction.
   const unlockAudio = () => {
     ambientAudio.muted = false;
     tryPlay();

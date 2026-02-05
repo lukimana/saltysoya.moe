@@ -4,7 +4,7 @@ https://saltysoya.moe is a One-Page static site to display Links/Gallery for the
 
 Created with the help of Codex.
 
-# Image creation pipeline
+# How to create images for the site
 
 ## Folder roles
 
@@ -53,8 +53,10 @@ Created with the help of Codex.
   - Detects width/height for each WebP.
   - Writes `images.json` entries used by the gallery.
 
-## Gallery behavior
+# Runtime flow
 
-- `index.html` loads `images.json`.
-- Thumbnails are lazy-loaded via IntersectionObserver.
-- `srcset` uses 640w/1024w/full-size so the browser picks an efficient file.
+- Browser loads `index.html`, `styles.css`, `script.js`, and `main.js`.
+- `script.js` starts the hue-blob animation and sets up ambient audio unlock.
+- `main.js` fetches `images.json`, builds the gallery, and lazily populates image sources.
+- `main.js` wires the "pat the demon" button, plays sounds, shows GIFs, and updates the global counter.
+- `main.js` toggles the link/credits panels on button clicks.
