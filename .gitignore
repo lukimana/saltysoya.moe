@@ -6,6 +6,8 @@ img-webp/
 !img-webp/.gitkeep
 music/
 vid/
+!music/.gitkeep
+!vid/.gitkeep
 
 # files
 gallery.saltysoya.moe.code-workspace
