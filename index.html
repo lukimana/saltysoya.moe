@@ -10,6 +10,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Salty Soya</title>
+    <link
+      rel="preload"
+      href="fonts/Fraunces-VariableFont_SOFT,WONK,opsz,wght.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="fonts/Fraunces-Italic-VariableFont_SOFT,WONK,opsz,wght.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="vid/Obake_2.webm"
+      as="video"
+      type="video/webm"
+    />
     <link rel="icon" type="image/png" href="favicon.png" />
     <style>
       @font-face {
@@ -338,6 +358,15 @@
       }
 
       /* Floating hue blobs animated by script.js */
+      .hue-field {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 0;
+        contain: layout paint;
+      }
+
       .hue-blob {
         position: absolute;
         pointer-events: none;
@@ -549,15 +578,17 @@
   </head>
   <body>
     <div class="page">
-      <div class="hue-blob b1" aria-hidden="true"></div>
-      <div class="hue-blob b2" aria-hidden="true"></div>
-      <div class="hue-blob b3" aria-hidden="true"></div>
-      <div class="hue-blob b4" aria-hidden="true"></div>
-      <div class="hue-blob b5" aria-hidden="true"></div>
-      <div class="hue-blob b6" aria-hidden="true"></div>
-      <div class="hue-blob b7" aria-hidden="true"></div>
-      <div class="hue-blob b8" aria-hidden="true"></div>
-      <div class="hue-blob b9" aria-hidden="true"></div>
+      <div class="hue-field" aria-hidden="true">
+        <div class="hue-blob b1"></div>
+        <div class="hue-blob b2"></div>
+        <div class="hue-blob b3"></div>
+        <div class="hue-blob b4"></div>
+        <div class="hue-blob b5"></div>
+        <div class="hue-blob b6"></div>
+        <div class="hue-blob b7"></div>
+        <div class="hue-blob b8"></div>
+        <div class="hue-blob b9"></div>
+      </div>
       <main class="wrap">
         <h1>Salty Soya</h1>
         <div class="spacer"></div>
@@ -737,8 +768,8 @@
         </section>
       </main>
       <div class="sticker-row" aria-hidden="true">
-        <img class="sticker-left" src="stickers/suba_comm_stickers_zorua.png" alt="" />
-        <img class="sticker-right" src="stickers/suba_comm_stickers_soy.png" alt="" />
+        <img class="sticker-left" src="stickers/suba_comm_stickers_zorua.webp" alt="" />
+        <img class="sticker-right" src="stickers/suba_comm_stickers_soy.webp" alt="" />
       </div>
       <div class="footer">
         made by <a href="https://lukimana.moe" target="_blank" rel="noopener noreferrer"> lukimana</a><br />
@@ -753,7 +784,7 @@
       loop
       preload="auto"
     ></audio>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <script>
       const galleryGrid = document.getElementById("gallery-grid");
       const feeshButton = document.getElementById("feesh-button");

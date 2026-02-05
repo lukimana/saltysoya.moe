@@ -1,4 +1,4 @@
-const frame = document.querySelector(".page");
+const frame = document.querySelector(".hue-field");
 const initialBlobs = Array.from(document.querySelectorAll(".hue-blob"));
 
 const blobs = initialBlobs.map((el) => ({
