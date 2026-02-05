@@ -60,3 +60,8 @@ Created with the help of Codex.
 - `main.js` fetches `images.json`, builds the gallery, and lazily populates image sources.
 - `main.js` wires the "pat the demon" button, plays sounds, shows GIFs, and updates the global counter.
 - `main.js` toggles the link/credits panels on button clicks.
+
+# License
+
+This repository is licensed under the GNU General Public License v3.0.
+See `LICENSE` for the full text.
