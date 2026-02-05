@@ -78,13 +78,14 @@ fetch("images.json")
 
     items
       .sort(() => Math.random() - 0.5)
-      .forEach((item) => {
-        const src = item.src;
-        const link = document.createElement("a");
-        link.className = "gallery-item";
-        link.target = "_blank";
-        link.rel = "noopener";
-        link.dataset.webp = src;
+    .forEach((item) => {
+      const src = item.src;
+      const link = document.createElement("a");
+      link.className = "gallery-item";
+      link.href = src;
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.dataset.webp = src;
 
         const img = document.createElement("img");
         img.decoding = "async";
