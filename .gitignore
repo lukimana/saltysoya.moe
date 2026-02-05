@@ -6,6 +6,7 @@ img-webp-640/*
 img-webp-1024/*
 music/*
 vid/*
+tools/*
 
 !img/.gitkeep
 !img-webp/.gitkeep
