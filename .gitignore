@@ -1,17 +1,19 @@
 # folders
 Backup/
-img/
-img-webp/
+img/*
+img-webp/*
+img-webp-640/*
+img-webp-1024/*
+music/*
+vid/*
+
 !img/.gitkeep
 !img-webp/.gitkeep
-music/
-vid/
-!music/.gitkeep
-!vid/.gitkeep
-img-webp-640/
-img-webp-1024/
 !img-webp-640/.gitkeep
 !img-webp-1024/.gitkeep
+!music/.gitkeep
+!vid/.gitkeep
+Then create these em
 
 
 
