@@ -2,6 +2,8 @@
 Backup/
 img/
 img-webp/
+!img/.gitkeep
+!img-webp/.gitkeep
 music/
 vid/
 
