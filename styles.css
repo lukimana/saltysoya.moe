@@ -208,6 +208,15 @@
         box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
       }
 
+      .schedule-image {
+        width: min(900px, 92%);
+        margin: 16px auto 0;
+        display: block;
+        border-radius: 16px;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
+        height: auto;
+      }
+
       .video-actions {
         width: min(900px, 100%);
         margin: 16px auto 0;

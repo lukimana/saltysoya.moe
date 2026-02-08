@@ -7,6 +7,7 @@ img-webp-1024/*
 music/*
 vid/*
 tools/*
+schedule/*
 
 !img/.gitkeep
 !img-webp/.gitkeep
@@ -14,6 +15,7 @@ tools/*
 !img-webp-1024/.gitkeep
 !music/.gitkeep
 !vid/.gitkeep
+!schedule/.gitkeep
 
 
 
