@@ -209,8 +209,9 @@
           class="schedule-image"
           src="schedule/schedule.png"
           alt="Schedule"
+          onerror="this.style.display='none'; document.getElementById('schedule-fallback').style.display='block';"
         />
-        <p class="schedule-fallback">schedule image unavailable. check the current status on discord!</p>
+        <p id="schedule-fallback" class="schedule-fallback">schedule image unavailable. check the current status on discord!</p>
         <div class="spacer"></div>
         <h2>pat the cute demon</h2>
         <div class="divider" id="feesh-divider"></div>
