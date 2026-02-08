@@ -218,6 +218,12 @@
         height: auto;
       }
 
+      .schedule-fallback {
+        margin: 10px 0 0;
+        font-size: 0.95rem;
+        color: #6f4d58;
+      }
+
       .video-actions {
         width: min(900px, 100%);
         margin: 16px auto 0;
