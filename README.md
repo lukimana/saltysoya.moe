@@ -1,4 +1,4 @@
-# salysoya.moe 
+# saltysoya.moe 
 
 https://saltysoya.moe is a One-Page static site to display Links/Gallery for the VTuber SaltySoya
 
