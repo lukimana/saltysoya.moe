@@ -1,4 +1,4 @@
-// script.js: Animate hue blobs and unlock ambient audio playback.
+// script.js: Animate hue blobs.
 const frame = document.querySelector(".hue-field");
 const initialBlobs = Array.from(document.querySelectorAll(".hue-blob"));
 
@@ -116,24 +116,3 @@ const updateBlobs = (time) => {
 };
 
 requestAnimationFrame(updateBlobs);
-
-const ambientAudio = document.getElementById("ambient-audio");
-if (ambientAudio) {
-  ambientAudio.volume = 0.2;
-  // Attempts to start ambient audio playback (may be blocked until user gesture).
-  const tryPlay = () => {
-    ambientAudio.play().catch(() => {});
-  };
-  tryPlay();
-
-  // Unlocks audio on first user interaction.
-  const unlockAudio = () => {
-    ambientAudio.muted = false;
-    tryPlay();
-    window.removeEventListener("pointerdown", unlockAudio);
-    window.removeEventListener("keydown", unlockAudio);
-  };
-
-  window.addEventListener("pointerdown", unlockAudio, { passive: true });
-  window.addEventListener("keydown", unlockAudio);
-}

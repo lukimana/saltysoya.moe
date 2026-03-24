@@ -1,4 +1,4 @@
-// main.js: Build the gallery, handle the feesh counter, and wire UI interactions.
+﻿// main.js: Build the gallery, handle the feesh counter, and wire UI interactions.
 const galleryGrid = document.getElementById("gallery-grid");
 const feeshButton = document.getElementById("feesh-button");
 const feeshCounter = document.getElementById("feesh-counter");
@@ -7,6 +7,72 @@ const feeshFallback = document.getElementById("feesh-counter-fallback");
 const feeshButtonWrap = document.getElementById("feesh-button-wrap");
 const feeshCounterTop = document.getElementById("feesh-counter");
 const feeshApi = "https://api.saltysoya.moe/api/feesh";
+const latestYoutubeSection = document.getElementById("latest-youtube-section");
+const latestYoutubeIframe = document.getElementById("latest-youtube-iframe");
+const latestYoutubeFallback = document.getElementById("latest-youtube-fallback");
+
+const getYoutubeVideoId = (urlValue) => {
+  try {
+    const parsed = new URL(urlValue);
+    const hostname = parsed.hostname.toLowerCase();
+    if (hostname === "youtu.be") {
+      return parsed.pathname.split("/").filter(Boolean)[0] || "";
+    }
+    if (hostname.includes("youtube.com")) {
+      if (parsed.pathname === "/watch") {
+        return parsed.searchParams.get("v") || "";
+      }
+      if (parsed.pathname.startsWith("/embed/")) {
+        return parsed.pathname.split("/")[2] || "";
+      }
+      if (parsed.pathname.startsWith("/shorts/")) {
+        return parsed.pathname.split("/")[2] || "";
+      }
+    }
+    return "";
+  } catch (error) {
+    return "";
+  }
+};
+
+if (latestYoutubeSection && latestYoutubeIframe) {
+  const hideLatestYoutubeSection = () => {
+    latestYoutubeSection.style.display = "none";
+  };
+
+  const showLatestYoutubeSection = () => {
+    latestYoutubeSection.style.display = "";
+  };
+
+  latestYoutubeIframe.addEventListener("error", () => {
+    hideLatestYoutubeSection();
+  });
+
+  fetch("youtube/latest-video.json")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to load latest video JSON");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      const videoId = getYoutubeVideoId(data?.url || "");
+      if (!videoId) {
+        throw new Error("Missing or invalid YouTube URL");
+      }
+      showLatestYoutubeSection();
+      latestYoutubeIframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?rel=0`;
+      latestYoutubeIframe.style.display = "block";
+      latestYoutubeIframe.title = data?.title || "latest youtube video";
+      if (latestYoutubeFallback) {
+        latestYoutubeFallback.style.display = "none";
+      }
+    })
+    .catch((error) => {
+      console.error("Failed to render latest YouTube video:", error);
+      hideLatestYoutubeSection();
+    });
+}
 
 // Loads the WebP gallery list, renders tiles, and maps clicks to originals.
 // Loads the gallery image list.
@@ -285,3 +351,4 @@ actionButtons.forEach((button) => {
     button.setAttribute("aria-expanded", isOpen ? "true" : "false");
   });
 });
+

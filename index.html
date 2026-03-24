@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <!--
   Summary:
-  - Single-page gallery with animated hue blobs, ambient audio, and a "Pat the feesh" counter.
+  - Single-page gallery with animated hue blobs and a "Pat the feesh" counter.
   - Gallery images load from images.json (WebP) but link to original files in /img.
   - A Worker endpoint provides the global counter value.
 -->
@@ -214,6 +214,24 @@
         />
         <p id="schedule-fallback" class="schedule-fallback">schedule image unavailable. check the current status on discord!</p>
         <div class="spacer"></div>
+        <section id="latest-youtube-section">
+          <h2>latest youtube video</h2>
+          <div class="divider"></div>
+          <div id="latest-youtube" class="latest-youtube">
+            <iframe
+              id="latest-youtube-iframe"
+              class="latest-youtube-iframe"
+              src=""
+              title="latest youtube video"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+            <p id="latest-youtube-fallback" class="schedule-fallback">latest video unavailable right now.</p>
+          </div>
+          <div class="spacer"></div>
+        </section>
         <h2>pat the cute demon</h2>
         <div class="divider" id="feesh-divider"></div>
         <div id="feesh-counter" class="feesh-counter">
@@ -246,20 +264,13 @@
       </div>
       <div class="footer">
         made by <a href="https://lukimana.moe" target="_blank" rel="noopener noreferrer"> lukimana</a><br />
-        with music from <a href="https://vndb.org/v24717" target="_blank" rel="noopener noreferrer">kinkoi</a><br />
         and footer images created by <a href="https://kybit.carrd.co/" target="_blank" rel="noopener noreferrer">Ky</a><br />
         you can find the github <a href="https://github.com/lukimana/saltysoya.moe" target="_blank" rel="noopener noreferrer">here</a><br />
       </div>
     </div>
-    <audio
-      id="ambient-audio"
-      src="music/12-Golden Time.mp3"
-      autoplay
-      loop
-      preload="auto"
-    ></audio>
     <script src="script.js" defer></script>
     
     <script src="main.js" defer></script>
   </body>
 </html>
+

@@ -1,4 +1,4 @@
-      @font-face {
+﻿      @font-face {
         font-family: "Fraunces";
         src: url("fonts/Fraunces-VariableFont_SOFT,WONK,opsz,wght.woff2")
             format("woff2"),
@@ -218,6 +218,21 @@
         height: auto;
       }
 
+      .latest-youtube {
+        width: min(900px, 92%);
+        margin: 16px auto 0;
+      }
+
+      .latest-youtube-iframe {
+        display: none;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: 0;
+        border-radius: 16px;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
+        background: #000;
+      }
+
       .schedule-fallback {
         margin: 10px 0 0;
         font-size: 0.95rem;
@@ -325,7 +340,7 @@
       }
 
       .action-item::before {
-        content: "✦";
+        content: "âœ¦";
         color: #8b6f47;
       }
 
@@ -557,3 +572,4 @@
           column-count: 1;
         }
       }
+
